@@ -1,0 +1,25 @@
+@page "/"
+
+<h1>Index</h1>
+
+<NavLink class="nav-link" href="createTournament">
+    <i class="fa-solid fa-plus"></i> Create a new tournament
+</NavLink>
+
+<NavLink class="nav-link" href="#">
+    <i class="fa-regular fa-folder-open"></i> Open an existing tournament
+</NavLink>
+
+@code {
+    public async Task PickAndShow(PickOptions options)
+    {
+        FileResult result = await FilePicker.Default.PickAsync(options);
+        if (result is null || !result.FileName.EndsWith("ost", StringComparison.OrdinalIgnoreCase))
+        {
+            throw new Exception("No file were found");
+        }
+
+        using var stream = await result.OpenReadAsync();
+        var image = ImageSource.FromStream(() => stream);
+    }
+}

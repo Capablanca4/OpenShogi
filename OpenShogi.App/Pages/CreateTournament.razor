@@ -1,0 +1,108 @@
+@page "/createTournament";
+
+@using OpenShogi.Models.Enums;
+@using OpenShogi.Models.Models;
+
+<h1>Create a tournament</h1>
+
+<EditForm Model="@tournament" OnSubmit="@HandleSubmit" class="container-sm">
+    <!--Tournament name-->
+    <div class="mb-3">
+        <label for="tournamentName" class="form-label">Name</label>
+        <InputText id="tournamentName" class="form-control" @bind-Value="tournament.Name" />
+    </div>
+
+    <!--Tournament type-->
+    <div class="mb-3">
+        <label for="tournamentType" class="form-label">Type</label>
+        <InputSelect id="tournamentType" class="form-control" @bind-Value="tournament.TournamentType">
+            <option value="@TournamentType.Swiss" selected>Swiss</option>
+            <option value="@TournamentType.Cup">Cup</option>
+            <option value="@TournamentType.CupWithSwiss">CupWithSwiss</option>
+        </InputSelect>
+    </div>
+
+    <!--Tournament number of rounds-->
+    <div class="mb-3">
+        <label for="tournamentRounds" class="form-label">Number of rounds</label>
+        <InputNumber id="tournamentRounds" class="form-control" @bind-Value="tournament.NumberOfRounds" min="1" />
+    </div>
+
+    <!--Tournament location-->
+    <div class="mb-3">
+        <label for="tournamentLocation" class="form-label">Location</label>
+        <InputText id="tournamentLocation" class="form-control" @bind-Value="tournament.Location" />
+    </div>
+
+    <!--Tournament duration-->
+    <div class="row g-3">
+
+        <!--Tournament start-->
+        <div class="col-md-6">
+            <label for="tournamentStart" class="form-label">Start</label>
+            <InputDate id="tournamentStart" class="form-control" @bind-Value="tournament.StartDate" />
+        </div>
+
+        <!--Tournament end-->
+        <div class="col-md-6">
+            <label for="tournamentEnd" class="form-label">End</label>
+            <InputDate id="tournamentEnd" class="form-control" @bind-Value="tournament.EndDate" />
+        </div>
+    </div>
+
+    <!--Tournament first tie breaker-->
+    <div class="mb-3">
+        <label for="tournamentFirstTieBreaker" class="form-label">First Tie Breaker</label>
+        <InputSelect id="tournamentFirstTieBreaker" class="form-control" @bind-Value="tournament.FirstTieBreaker">
+            <option value="@TieBreaker.Bucholz" selected>Bucholz</option>
+            <option value="@TieBreaker.BucholzMedian">Bucholz Median</option>
+            <option value="@TieBreaker.SOS">SOS</option>
+        </InputSelect>
+    </div>
+
+    <!--Tournament second tie breaker-->
+    <div class="mb-3">
+        <label for="tournamentSecondTieBreaker" class="form-label">Second Tie Breaker</label>
+        <InputSelect id="tournamentSecondTieBreaker" class="form-control" @bind-Value="tournament.SecondTieBreaker">
+            <option value="" selected>None</option>
+            <option value="@TieBreaker.Bucholz">Bucholz</option>
+            <option value="@TieBreaker.BucholzMedian">Bucholz Median</option>
+            <option value="@TieBreaker.SOS">SOS</option>
+        </InputSelect>
+    </div>
+
+    <!--Tournament third tie breaker-->
+    <div class="mb-3">
+        <label for="tournamentThirdTieBreaker" class="form-label">Third Tie Breaker</label>
+        <InputSelect id="tournamentThirdTieBreaker" class="form-control" @bind-Value="tournament.ThirdTieBreaker">
+            <option value="" selected>None</option>
+            <option value="@TieBreaker.Bucholz">Bucholz</option>
+            <option value="@TieBreaker.BucholzMedian">Bucholz Median</option>
+            <option value="@TieBreaker.SOS">SOS</option>
+        </InputSelect>
+    </div>
+
+    <!--Tournament protection-->
+    <div class="mb-3">
+        <label for="tournamentProtection" class="form-label">Protection</label>
+        <InputSelect id="tournamentProtection" class="form-control" @bind-Value="tournament.Protection">
+            <option value="" selected>None</option>
+            <option value="@Protection.ClubWeak">Bucholz</option>
+            <option value="@TieBreaker.BucholzMedian">Bucholz Median</option>
+            <option value="@TieBreaker.SOS">SOS</option>
+        </InputSelect>
+    </div>
+
+    <!--Tournament Submit button-->
+    <button type="submit" class="btn btn-primary">Create</button>
+</EditForm>
+
+@code {
+    private Tournament tournament = new();
+
+    private void HandleSubmit()
+    {
+
+        // Process the form
+    }
+}
